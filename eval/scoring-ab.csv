@@ -1,0 +1,10 @@
+# Blind A/B scoring — three-case evaluation (one row per blend/case).
+# Judge the RENDERED pages only (never the prompt/DESIGN.md). Shuffle the two arms
+# to X/Y before looking; fill reveal_* only after scoring. Ties ARE allowed:
+# would_ship may be X, Y, or tie; coherence is scored independently per arm.
+# Keep token_accuracy (score.mjs pass/total) and capture_accuracy SEPARATE from
+# visual preference — do not blend them. Record the exact generator model+version.
+case,model_version,X_coherence_1to5,Y_coherence_1to5,would_ship_X_Y_or_tie,baseline_token_pass_total,tool_token_pass_total,capture_accuracy_notes,reveal_X_arm,reveal_Y_arm,notes
+case-01-landing,,,,,,,,,,
+case-02-dashboard,,,,,,,,,,
+case-03-article,,,,,,,,,,

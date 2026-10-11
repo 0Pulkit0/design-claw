@@ -1,0 +1,34 @@
+PHASE 0.5 — FIXED PAGE SPEC
+Identical for every generation (both arms, all blends). Only the design system
+differs between renders. Copy and sections below are fixed — no lorem ipsum.
+
+PAGE: a single landing page for "Atlas", a personal-finance app.
+OUTPUT: one self-contained .html file — inline CSS, no external JS. Web/system
+fonts or Google Fonts via <link> are fine.
+
+SECTIONS (in order):
+
+1. TOP NAV
+   - Brand: Atlas
+   - Links: Features · Pricing · Login
+   - Button: Get started
+
+2. HERO
+   - Headline: Your money, finally in one place.
+   - Subhead: Atlas connects every account and shows you where you stand — in
+     real time, without the spreadsheet.
+   - Primary CTA button: Start free
+
+3. THREE FEATURE CARDS (one row)
+   - Everything connected — Link banks, cards, and investments in minutes.
+   - See the whole picture — Net worth, cash flow, and trends on one dashboard.
+   - Private by default — Bank-grade encryption. We never sell your data.
+
+4. PRICING STRIP (two tiers, side by side)
+   - Free — $0 — Up to 3 accounts — button: Choose Free
+   - Plus — $8/mo — Unlimited accounts + insights — button: Choose Plus
+
+5. FOOTER
+   - Brand: Atlas
+   - Links: Privacy · Terms · Contact
+   - © 2026 Atlas, Inc.

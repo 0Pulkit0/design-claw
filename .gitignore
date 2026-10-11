@@ -1,0 +1,6 @@
+.DS_Store
+*.zip
+eval/node_modules/
+node_modules/
+.claude/
+_dc_*.json

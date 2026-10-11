@@ -1,0 +1,13 @@
+You are building a single web page. Use the brief, the attached reference images,
+AND the compiled design handoff below. The handoff's measured tokens are
+authoritative — use those exact values where it gives them; treat unmeasured
+properties as your own decisions guided by the images. Produce one self-contained
+HTML file with inline CSS. Do not add commentary.
+
+BRIEF:
+{{BRIEF}}
+
+COMPILED HANDOFF (paste the exported PROMPT.txt):
+{{HANDOFF}}
+
+The attached images are the same references the handoff was compiled from.

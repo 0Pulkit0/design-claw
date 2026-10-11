@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas — Your money, finally in one place.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;--ink:#0b0b0c;--ink-2:#4a4a55;
+  --violet:#6a4cf2;--violet-deep:#4b2fd1;--gold:#f4c33e;--lavender:#ecebfc;
+  --bw:2px;--bw-thick:3px;--maxw:1200px;--pad:48px;
+  --font-display:"Playfair Display",Georgia,serif;
+  --font-ui:"Space Grotesk","Arial Narrow",sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body{background:#d9d9d9;color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.5;padding:40px 24px;}
+.frame{max-width:var(--maxw);margin:0 auto;background:var(--paper);border:var(--bw-thick) solid var(--ink);}
+.eyebrow{font-family:var(--font-ui);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:14px;}
+.eyebrow .num{color:var(--violet);font-weight:700;}
+.eyebrow .rule{flex:1;height:var(--bw);background:var(--ink);opacity:.14;}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:15px 26px;border:var(--bw) solid var(--ink);border-radius:0;cursor:pointer;text-decoration:none;transition:transform .08s ease,box-shadow .08s ease,background .12s ease,color .12s ease;}
+.btn-primary{background:var(--violet);color:#fff;}
+.btn-primary:hover{background:var(--violet-deep);box-shadow:5px 5px 0 var(--ink);transform:translate(-1px,-1px);}
+.btn-ghost{background:var(--paper);color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:var(--paper);}
+.btn-lg{padding:18px 34px;font-size:14px;}
+.nav{display:flex;align-items:stretch;border-bottom:var(--bw-thick) solid var(--ink);}
+.nav-brand{display:flex;align-items:center;padding:0 32px;border-right:var(--bw-thick) solid var(--ink);font-family:var(--font-ui);font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;}
+.mark{display:inline-block;width:12px;height:12px;background:var(--violet);margin-right:12px;}
+.nav-spacer{flex:1;}
+.nav-links{display:flex;align-items:stretch;}
+.nav-link{display:flex;align-items:center;padding:0 28px;border-left:var(--bw) solid var(--ink);font-family:var(--font-ui);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:background .12s ease;}
+.nav-link:hover{background:var(--lavender);}
+.nav-cta{display:flex;align-items:center;gap:8px;padding:0 34px;border-left:var(--bw-thick) solid var(--ink);background:var(--violet);color:#fff;font-family:var(--font-ui);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .12s ease;}
+.nav-cta:hover{background:var(--violet-deep);}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;}
+.hero-main{padding:56px var(--pad) 60px;}
+.hero h1{font-family:var(--font-display);font-weight:800;font-size:76px;line-height:1.02;letter-spacing:-.015em;margin:26px 0 24px;}
+.hero .sub{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:30em;margin-bottom:36px;}
+.hero-aside{border-left:var(--bw-thick) solid var(--ink);background:var(--lavender);padding:26px;display:flex;flex-direction:column;gap:14px;}
+.aside-cap{font-family:var(--font-ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between;}
+.aside-grid{flex:1;min-height:260px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:10px;}
+.cell{border:var(--bw) solid var(--ink);background:var(--paper);}
+.cell.v{background:var(--violet);}
+.cell.g{background:var(--gold);}
+.cell.k{background:var(--ink);}
+.band{display:flex;align-items:center;padding:24px var(--pad);border-top:var(--bw-thick) solid var(--ink);}
+.features{display:grid;grid-template-columns:repeat(3,1fr);border-top:var(--bw) solid var(--ink);}
+.feature{padding:38px 32px;border-left:var(--bw) solid var(--ink);}
+.feature:first-child{border-left:none;}
+.fnum{font-family:var(--font-ui);font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:20px;}
+.ficon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:var(--bw) solid var(--ink);font-size:22px;line-height:1;margin-bottom:22px;}
+.ficon.v{background:var(--violet);color:#fff;}
+.ficon.g{background:var(--gold);color:var(--ink);}
+.ficon.k{background:var(--ink);color:#fff;}
+.feature h3{font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.12;margin-bottom:12px;}
+.feature p{font-size:16px;color:var(--ink-2);line-height:1.55;}
+.pricing{background:var(--lavender);border-top:var(--bw-thick) solid var(--ink);padding:38px var(--pad) 52px;}
+.pricing .eyebrow{margin-bottom:28px;}
+.tiers{display:grid;grid-template-columns:1fr 1fr;border:var(--bw-thick) solid var(--ink);background:var(--paper);}
+.tier{padding:40px 36px;position:relative;}
+.tier+.tier{border-left:var(--bw-thick) solid var(--ink);}
+.tier.featured{box-shadow:inset 0 6px 0 var(--violet);}
+.tname{font-family:var(--font-ui);font-weight:700;font-size:14px;letter-spacing:.16em;text-transform:uppercase;}
+.price{font-family:var(--font-display);font-weight:800;font-size:58px;line-height:1;margin:16px 0 8px;}
+.price span{font-family:var(--font-ui);font-size:16px;font-weight:500;letter-spacing:.04em;color:var(--ink-2);}
+.tdesc{font-size:16px;color:var(--ink-2);margin-bottom:28px;}
+.tag{position:absolute;top:0;right:0;background:var(--gold);color:var(--ink);font-family:var(--font-ui);font-weight:700;font-size:13px;padding:6px 12px;border-left:var(--bw) solid var(--ink);border-bottom:var(--bw) solid var(--ink);}
+.tier .btn{width:100%;justify-content:center;}
+.footer{display:flex;align-items:stretch;border-top:var(--bw-thick) solid var(--ink);}
+.foot-brand{display:flex;align-items:center;padding:22px 32px;border-right:var(--bw-thick) solid var(--ink);font-family:var(--font-ui);font-weight:700;font-size:20px;letter-spacing:.04em;text-transform:uppercase;}
+.foot-mid{flex:1;display:flex;align-items:stretch;}
+.foot-link{display:flex;align-items:center;padding:0 24px;border-left:var(--bw) solid var(--ink);font-family:var(--font-ui);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;}
+.foot-link:first-child{border-left:none;}
+.foot-link:hover{color:var(--violet);}
+.foot-copy{display:flex;align-items:center;padding:0 28px;border-left:var(--bw-thick) solid var(--ink);font-family:var(--font-ui);font-size:12px;letter-spacing:.08em;color:var(--ink-2);}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-aside{border-left:none;border-top:var(--bw-thick) solid var(--ink);}
+  .features{grid-template-columns:1fr;}
+  .feature{border-left:none;border-top:var(--bw) solid var(--ink);}
+  .feature:first-child{border-top:none;}
+  .hero h1{font-size:52px;}
+}
+@media(max-width:640px){
+  .nav{flex-wrap:wrap;}
+  .nav-brand{flex:1;}
+  .tiers{grid-template-columns:1fr;}
+  .tier+.tier{border-left:none;border-top:var(--bw-thick) solid var(--ink);}
+  .footer{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+<main class="frame">
+  <nav class="nav">
+    <div class="nav-brand"><span class="mark"></span>Atlas</div>
+    <div class="nav-spacer"></div>
+    <div class="nav-links">
+      <a class="nav-link" href="#features">Features</a>
+      <a class="nav-link" href="#pricing">Pricing</a>
+      <a class="nav-link" href="#login">Login</a>
+    </div>
+    <a class="nav-cta" href="#get-started">Get started <span>&#8599;</span></a>
+  </nav>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow"><span class="num">01</span><span>Personal Finance</span></div>
+      <h1>Your money, finally in one place.</h1>
+      <p class="sub">Atlas connects every account and shows you where you stand — in real time, without the spreadsheet.</p>
+      <a class="btn btn-primary btn-lg" href="#start">Start free <span>&#8599;</span></a>
+    </div>
+    <aside class="hero-aside">
+      <div class="aside-cap"><span>Balance</span><span>Live</span></div>
+      <div class="aside-grid">
+        <div class="cell v" style="grid-column:1/3;grid-row:1/3;"></div>
+        <div class="cell"></div>
+        <div class="cell g"></div>
+        <div class="cell k"></div>
+        <div class="cell"></div>
+        <div class="cell v"></div>
+      </div>
+      <div class="aside-cap"><span>Net worth</span><span>&#8599; 2026</span></div>
+    </aside>
+  </section>
+    <div class="band" id="features">
+    <div class="eyebrow"><span class="num">02</span><span>Features</span><span class="rule"></span></div>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <div class="fnum">01</div>
+      <div class="ficon v">&#10022;</div>
+      <h3>Everything connected</h3>
+      <p>Link banks, cards, and investments in minutes.</p>
+    </div>
+    <div class="feature">
+      <div class="fnum">02</div>
+      <div class="ficon g">&#9638;</div>
+      <h3>See the whole picture</h3>
+      <p>Net worth, cash flow, and trends on one dashboard.</p>
+    </div>
+    <div class="feature">
+      <div class="fnum">03</div>
+      <div class="ficon k">&#9670;</div>
+      <h3>Private by default</h3>
+      <p>Bank-grade encryption. We never sell your data.</p>
+    </div>
+  </div>
+  <section class="pricing" id="pricing">
+    <div class="eyebrow"><span class="num">03</span><span>Pricing</span><span class="rule"></span></div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tname">Free</div>
+        <div class="price">$0</div>
+        <div class="tdesc">Up to 3 accounts</div>
+        <a class="btn btn-ghost" href="#free">Choose Free</a>
+      </div>
+      <div class="tier featured">
+        <span class="tag">&#9733;</span>
+        <div class="tname">Plus</div>
+        <div class="price">$8<span>/mo</span></div>
+        <div class="tdesc">Unlimited accounts + insights</div>
+        <a class="btn btn-primary" href="#plus">Choose Plus</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="foot-brand"><span class="mark"></span>Atlas</div>
+    <div class="foot-mid">
+      <a class="foot-link" href="#privacy">Privacy</a>
+      <a class="foot-link" href="#terms">Terms</a>
+      <a class="foot-link" href="#contact">Contact</a>
+    </div>
+    <div class="foot-copy">&copy; 2026 Atlas, Inc.</div>
+  </footer>
+</main>
+</body>
+</html>

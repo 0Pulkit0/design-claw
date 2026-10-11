@@ -1,0 +1,5 @@
+{
+  "heading": "h1",
+  "cta": "a[class*=cta], button[class*=primary], .btn-primary, button",
+  "surface": ".card, [class*=card], section [class*=panel]"
+}

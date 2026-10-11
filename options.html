@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design Claw — Settings</title>
+<style>
+  /* Shared studio palette; no network font. */
+  :root{
+    --paper:#f4f6f7; --paper-2:#edf1f2; --card:#FFFFFF;
+    --ink:#192a30; --ink-2:#4d626b; --ink-3:#657982;
+    --rule:#dce5e8; --rule-2:#c8d5da;
+    --accent:#087568; --accent-2:#075c53; --accent-wash:#e6f3ef;
+    --red:#B23B2E; --r:9px; --r-sm:6px;
+    --shadow:0 1px 2px rgba(20,22,30,.05);
+    --sans:ui-sans-serif,system-ui,-apple-system,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:var(--sans);
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+  main{max-width:650px;margin:36px auto;padding:32px 28px 48px;background:white;border:1px solid var(--rule);border-radius:16px;box-shadow:0 10px 40px #173b4008}
+  .brand{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+  h1{font:650 20px/1.3 var(--sans);letter-spacing:-.012em;margin:0}
+  .sub{color:var(--ink-2);font-size:14px;margin:0 0 36px;max-width:58ch}
+  code{font:12.5px var(--mono);background:var(--card);border:1px solid var(--rule);padding:1px 5px;border-radius:5px}
+  label{display:block;margin:0 0 24px}
+  .lbl{display:block;font:600 14px/1.4 var(--sans);margin-bottom:8px}
+  .lbl .dim{font-weight:400;color:var(--ink-3)}
+  input[type=text],input[type=password]{width:100%;padding:10px 12px;background:var(--card);border:1px solid var(--rule-2);border-radius:var(--r-sm);color:var(--ink);font:inherit;font-size:14px}
+  input::placeholder{color:var(--ink-3)}
+  input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  .row{display:flex;gap:9px;align-items:center}
+  .row input{flex:1}
+  button{font:inherit;cursor:pointer;color:inherit}
+  .btn{padding:10px 15px;background:var(--card);border:1px solid var(--rule-2);border-radius:var(--r-sm);color:var(--ink);font-weight:500;transition:border-color .12s,background .12s}
+  .btn:hover{border-color:var(--ink-3)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;box-shadow:var(--shadow)}
+  .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+  .btn:disabled{opacity:.65;cursor:wait}
+  .presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .presets button{padding:5px 10px;font-size:12.5px;color:var(--ink-2);background:none;border:1px solid var(--rule-2);border-radius:var(--r-sm)}
+  .presets button:hover{border-color:var(--accent);color:var(--accent)}
+  .msg{min-height:20px;font-size:13.5px;margin:20px 0 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+  .msg::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;margin-top:7px;background:var(--rule-2)}
+  .msg[data-ok="1"]{color:var(--accent)} .msg[data-ok="1"]::before{background:var(--accent)}
+  .msg[data-ok="0"]{color:var(--red)} .msg[data-ok="0"]::before{background:var(--red)}
+  .msg:empty{display:none}
+  ul{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:6px;max-height:340px;overflow:auto}
+  li button{width:100%;text-align:left;font:13px var(--mono);padding:10px 12px;background:var(--card);border:1px solid var(--rule);border-radius:var(--r-sm);color:var(--ink);overflow-wrap:anywhere}
+  li button:hover{border-color:var(--accent);color:var(--accent)}
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:5px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+  <main>
+    <div class="brand">
+      <img src="icons/icon48.png" alt="" width="40" height="40" />
+      <h1>Design Claw — Settings</h1>
+    </div>
+    <p class="sub">Bring your own key. Any OpenAI-compatible API works — OpenAI, Groq, Gemini (compat), OpenRouter, or a local server. Keys live in <code>chrome.storage.local</code>, on this machine only.</p>
+
+    <label>
+      <span class="lbl">API base URL</span>
+      <input id="base" type="text" placeholder="https://api.groq.com/openai/v1" autocomplete="off" spellcheck="false" />
+      <span class="presets" id="presets"></span>
+    </label>
+
+    <label>
+      <span class="lbl">API key</span>
+      <span class="row">
+        <input id="key" type="password" placeholder="sk-… / gsk_… (blank for local)" autocomplete="off" spellcheck="false" />
+        <button class="btn" id="toggle" type="button">Show</button>
+      </span>
+    </label>
+
+    <label>
+      <span class="lbl">Model <span class="dim">— list and pick, or type one</span></span>
+      <input id="model" type="text" placeholder="none selected" autocomplete="off" spellcheck="false" />
+    </label>
+
+    <div class="row">
+      <button class="btn primary" id="save" type="button">Save</button>
+      <button class="btn" id="list" type="button">Validate key &amp; list models</button>
+    </div>
+
+    <p id="msg" class="msg"></p>
+    <ul id="models"></ul>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

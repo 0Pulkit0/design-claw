@@ -1,0 +1,9 @@
+You are building a single web page. Use ONLY the brief below and the attached
+reference images as your guide to the visual design. Produce one self-contained
+HTML file with inline CSS. Do not add commentary.
+
+BRIEF:
+{{BRIEF}}
+
+The attached images are design references for look and feel. Match their visual
+character as best you can.

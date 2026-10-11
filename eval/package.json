@@ -1,0 +1,10 @@
+{
+  "name": "design-compositor-eval",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Phase 4 eval harness (Node-only). The extension itself has NO build step; culori lives here, not in the extension bundle.",
+  "dependencies": {
+    "culori": "^4.0.1"
+  }
+}

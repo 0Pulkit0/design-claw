@@ -1,0 +1,18 @@
+ARM A2 — paste + precedence paragraph (the tool's thesis)
+
+You are given 3-4 screenshots of UI components, each taken from a DIFFERENT
+website, AND an explicit precedence paragraph that states which source is the
+spine, what each source contributes, and how conflicts resolve.
+
+Blend them into ONE coherent design system, FOLLOWING THE PRECEDENCE EXACTLY,
+and use it to build the page specified in subject.txt.
+
+PRECEDENCE:
+{{PRECEDENCE — per blend, from blends.md}}
+
+Output TWO files:
+  1) the page as a single self-contained HTML file (inline CSS).
+  2) a DESIGN.md describing the design system (tokens + a rationale that names
+     the precedence decisions).
+
+Return coherent, shippable work. Do not describe the screenshots back to me.

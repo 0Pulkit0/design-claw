@@ -1,0 +1,14 @@
+{
+  "_note": "FILL from resolved-spec.json after capturing. Each value is the measured token its role should contribute. Delete properties your capture did not measure (do not invent them). Tolerances: color ΔE<=10, length +/-2px, font-family = declared stack contains.",
+  "heading": {
+    "font-family": "<REF-02 typography source font, e.g. Inter>",
+    "font-size": "<REF-02 font-size, e.g. 32px>"
+  },
+  "cta": {
+    "background-color": "<REF-03 palette background, e.g. #2f4c8b>",
+    "color": "<REF-03 palette text, e.g. #ffffff>"
+  },
+  "surface": {
+    "border-top-left-radius": "<REF-04 shape radius, e.g. 12px>"
+  }
+}

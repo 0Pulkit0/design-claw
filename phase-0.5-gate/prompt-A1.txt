@@ -1,0 +1,11 @@
+ARM A1 — bare paste (control)
+
+You are given 3-4 screenshots of UI components, each taken from a DIFFERENT
+website. Blend them into ONE coherent design system and use it to build the page
+specified in subject.txt.
+
+Output TWO files:
+  1) the page as a single self-contained HTML file (inline CSS).
+  2) a DESIGN.md describing the design system you used (tokens + short rationale).
+
+Return coherent, shippable work. Do not describe the screenshots back to me.

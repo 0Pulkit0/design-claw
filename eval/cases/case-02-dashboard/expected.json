@@ -1,0 +1,15 @@
+{
+  "_note": "FILL from resolved-spec.json after capturing. Delete properties your capture did not measure. Tolerances: color ΔE<=10, length +/-2px, font-family = declared stack contains.",
+  "title": {
+    "font-family": "<REF-02 typography source font>",
+    "font-size": "<REF-02 font-size>"
+  },
+  "stat": {
+    "border-top-left-radius": "<REF-04 shape radius>",
+    "padding-top": "<REF-01 base padding-top>"
+  },
+  "panel": {
+    "background-color": "<REF-03 or base surface color>",
+    "border-top-left-radius": "<REF-04 shape radius>"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "title": "h1",
+  "body": "article p, main p, p",
+  "quote": "blockquote, [class*=pull], [class*=quote]"
+}

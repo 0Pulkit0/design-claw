@@ -1,0 +1,15 @@
+{
+  "_note": "FILL from resolved-spec.json after capturing. Delete properties your capture did not measure. Tolerances: color ΔE<=10, length +/-2px, font-family = declared stack contains. Remember computed font-family is the declared stack, not proof of the painted face.",
+  "title": {
+    "font-family": "<REF-02 typography source font>",
+    "font-size": "<REF-02 font-size>",
+    "line-height": "<REF-02 line-height>"
+  },
+  "body": {
+    "color": "<REF-03 text color>",
+    "font-size": "<REF-01 base font-size>"
+  },
+  "quote": {
+    "border-top-left-radius": "<REF-04 shape radius, if any>"
+  }
+}

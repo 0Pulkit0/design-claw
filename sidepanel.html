@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Design Claw</title>
+<link rel="stylesheet" href="studio.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="" />
+      <div><span class="brand-name">Design Claw</span><span class="brand-sub">Your reference studio</span></div>
+    </div>
+    <button class="chip" id="chip" data-ok="0" type="button" title="Settings">
+      <span class="dot"></span><span id="chip-label">checking…</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="2.1"/><path d="M8 1.8v1.6M8 12.6v1.6M3.6 3.6l1.1 1.1M11.3 11.3l1.1 1.1M1.8 8h1.6M12.6 8h1.6M3.6 12.4l1.1-1.1M11.3 4.7l1.1-1.1" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+  <nav class="studio-nav" aria-label="Workspace sections"><a href="#capture-section">Collect</a><a href="#brief-section">Brief</a><a href="#out">Handoff</a><button class="btn quiet sm" id="open-studio" type="button" title="Open a wider workspace">Open studio ↗</button></nav>
+  <main id="workspace">
+
+  <section class="sec capture-section" id="capture-section">
+    <p class="banner danger" id="env-warn" hidden role="alert">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5.5v3.2M8 11h.01" stroke-linecap="round"/><circle cx="8" cy="8" r="6.3"/></svg>
+      <span id="env-warn-msg"></span>
+    </p>
+    <h2 class="sec-title">Collect what inspires you</h2><p class="sec-sub">Keep the parts worth building on.</p>
+    <div class="cap-row">
+      <button class="btn primary lg" id="pick" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 1.4v3.1M8 11.5v3.1M1.4 8h3.1M11.5 8h3.1" stroke-linecap="round"/><circle cx="8" cy="8" r="2.4"/></svg>
+        Pick element
+      </button>
+      <button class="btn lg" id="pick-region" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 2.4" aria-hidden="true"><rect x="2.2" y="2.2" width="11.6" height="11.6" rx="1.6"/></svg>
+        Capture area
+      </button>
+    </div>
+    <div class="capture-legend"><span><b>Element</b> · image + measured styles</span><span><b>Area</b> · extended image</span></div><p class="hint" id="bar-hint">Hold at the top or bottom edge for 2 seconds to extend an area. Escape cancels.</p>
+    <button class="btn quiet sm" id="scan-page" type="button">Scan visible page styles</button>
+    <details id="scan-report" hidden>
+      <summary>Page style inventory</summary>
+      <div class="inner">
+        <p class="micro" id="scan-summary"></p>
+        <div class="scan-scroll" id="scan-results"></div>
+        <div class="workbench-actions"><button class="btn sm" id="scan-copy" type="button">Copy report</button><button class="btn sm" id="scan-download" type="button">Download report</button></div>
+      </div>
+    </details>
+    <div class="progress" id="cap-progress" hidden role="status" aria-live="polite">
+      <span class="spin" aria-hidden="true"></span>
+      <span id="cap-progress-msg">Capturing…</span>
+      <button class="btn quiet sm" id="cap-cancel" type="button">Cancel</button>
+    </div>
+  </section>
+
+  <section class="sec board-section" id="board-section">
+    <div class="sec-head" id="tray-head" hidden>
+      <h2 class="sec-title">References</h2>
+      <span class="count" id="tray-count"></span>
+    </div>
+    <p class="banner warn" id="spine-warn" hidden>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5.5v3.2M8 11h.01" stroke-linecap="round"/><circle cx="8" cy="8" r="6.3"/></svg>
+      <span>Pick one reference as the <b>base</b> — it sets the structure everything else builds on.</span>
+    </p>
+    <input id="reference-search" class="note" style="margin-bottom:8px" type="search" placeholder="Search your board…" aria-label="Search saved references" hidden />
+    <ul id="tray"></ul>
+    <p class="micro" id="search-empty" hidden>No references match this search.</p>
+    <div class="empty" id="empty"><img src="icons/icon48.png" alt="" /><strong>A board for your next idea.</strong><p>Capture a layout, a type treatment or a detail.<br>Then tell your builder what makes it work.</p></div>
+    <details id="collections-box">
+      <summary>Saved collections</summary>
+      <div class="inner">
+        <p class="micro">Save an independent snapshot of this board and brief. Add it to any future board, even after removing the original captures.</p>
+        <div class="preset-row"><input id="collection-name" type="text" maxlength="80" placeholder="e.g. Editorial inspiration" aria-label="Collection name" /><button class="btn sm" id="collection-save" type="button">Save board</button></div>
+        <div id="collection-list" aria-live="polite"></div>
+        <p class="micro" id="collection-message"></p>
+      </div>
+    </details>
+    <details id="project-tools">
+      <summary>Project backup &amp; import</summary>
+      <div class="inner">
+        <p class="micro">Back up images, measurements and your brief. Import adds references without deleting existing ones. An existing base stays in charge. Brief and notes load only when your brief is empty.</p>
+        <div class="workbench-actions"><button class="btn sm" id="backup-project" type="button">Download project backup</button><button class="btn sm" id="import-project" type="button">Import backup</button></div>
+        <input id="project-file" type="file" accept="application/json,.json" hidden />
+      </div>
+    </details>
+  </section>
+  <!-- BODY-MARKER-2 -->
+
+  <section class="sec compose" id="brief-section"><h2 class="sec-title">Make it your own</h2><p class="sec-sub">Turn references into a clear direction.</p>
+    <label class="field-label" for="brief">What are you building?</label>
+    <textarea id="brief" placeholder="e.g. a landing page for Atlas, my budgeting app"></textarea>
+    <div style="margin-top:10px"><input id="perrun" type="text" placeholder="One-off note for this run (not saved)" aria-label="Per-run note" /></div>
+
+    <div class="brief-grid">
+      <label>Interface type<select id="product-type"><option value="website">Website</option><option value="app">Product app</option><option value="dashboard">Dashboard</option><option value="store">Online store</option><option value="article">Article / publication</option></select></label>
+      <label>Primary action<input id="primary-action" type="text" maxlength="1000" placeholder="e.g. Book a demo" /></label>
+    </div>
+    <details id="design-controls"><summary>Audience, content &amp; constraints</summary><div class="brief-grid inner">
+      <label class="wide">Who is it for?<input id="audience" type="text" maxlength="1000" placeholder="Audience and context" /></label>
+      <label class="wide">Required content or features<textarea id="must-include" maxlength="4000" placeholder="The useful sections, information and interactions" ></textarea></label>
+      <label class="wide">Avoid<textarea id="design-avoid" maxlength="4000" placeholder="Unwanted patterns, content or visual choices" ></textarea></label>
+      <label class="wide">Implementation stack<input id="target-stack" type="text" maxlength="1000" placeholder="e.g. React + Tailwind, or plain HTML/CSS" /></label>
+    </div></details>
+    <div id="readiness" class="readiness" role="status"></div>
+    <div style="margin-top:14px">
+      <details id="presets-box">
+        <summary><svg class="caret" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg> Saved setups</summary>
+        <div class="inner">
+          <div class="preset-row">
+            <select id="preset-select" aria-label="Saved setups"><option value="">Choose a setup…</option></select>
+            <button class="btn sm" id="preset-apply" type="button">Apply</button>
+          </div>
+          <div class="preset-row">
+            <input id="preset-name" class="note" type="text" placeholder="Name this setup" aria-label="Setup name" />
+            <button class="btn sm" id="preset-save" type="button">Save</button>
+          </div>
+          <div class="btnrow">
+            <button class="btn sm" id="preset-rename" type="button">Rename</button>
+            <button class="btn sm" id="preset-delete" type="button">Delete</button>
+          </div>
+          <p class="micro">Stores the brief, design controls, persona and run note. Keys, provider settings and captures stay separate.</p>
+        </div>
+      </details>
+      <details id="persona-box">
+        <summary><svg class="caret" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg> How the model should design</summary>
+        <div class="inner">
+          <textarea id="persona" placeholder="How the model should design…"></textarea>
+          <div class="btnrow">
+            <button class="btn sm" id="persona-save" type="button">Save</button>
+            <button class="btn sm" id="persona-reset" type="button">Reset</button>
+          </div>
+          <p class="micro">The hard rules are protected, versioned, and ship with every compile.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="compile-dock">
+      <button class="btn primary block" id="compile" type="button" disabled>Compile handoff</button>
+    </div>
+  </section>
+
+  <section class="sec handoff-section" id="out" hidden>
+    <div class="sec-head"><h2 class="sec-title">Handoff</h2></div>
+    <p class="banner warn" id="stale" hidden>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8a5 5 0 0 1 8.5-3.5L13 6M13 8a5 5 0 0 1-8.5 3.5L3 10" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 3v3h-3M3 13v-3h3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Something changed since this was compiled — recompile to refresh it.</span>
+    </p>
+    <div class="handoff-summary"><div><strong id="handoff-title">Your build kit is ready</strong><p id="handoff-detail"></p></div></div>
+    <div class="tabs" role="tablist" aria-label="Compiled handoff">
+      <button id="tab-design" role="tab" aria-selected="true" aria-controls="output" tabindex="0" type="button">DESIGN.md</button>
+      <button id="tab-prompt" role="tab" aria-selected="false" aria-controls="output" tabindex="-1" type="button">Prompt</button>
+      <button id="tab-tokens" role="tab" aria-selected="false" aria-controls="tokens-view" tabindex="-1" type="button">Tokens</button>
+    </div>
+    <div class="pane">
+      <pre id="output"></pre>
+      <div id="tokens-view" class="tokens" hidden></div>
+      <button class="btn primary block" id="export" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 1.8v7.4M5 6.5 8 9.5l3-3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.6 10.5v2.1a1 1 0 0 0 1 1h8.8a1 1 0 0 0 1-1v-2.1" stroke-linecap="round"/></svg>
+        Export bundle (.zip)
+      </button>
+      <div class="out-actions" id="md-actions">
+        <button class="btn quiet sm" id="copy" type="button">Copy</button>
+        <button class="btn quiet sm" id="download" type="button">Download .md</button>
+        <button class="btn quiet sm" id="enhance" type="button">Add creative direction</button>
+      </div>
+      <div class="out-actions" id="json-actions" hidden>
+        <button class="btn quiet sm" id="copy-json" type="button">Copy JSON</button>
+        <button class="btn quiet sm" id="download-json" type="button">Download resolved-spec.json</button>
+      </div>
+      <div class="workbench-actions"><button class="btn quiet sm" id="copy-system" type="button">Copy design instructions</button><button class="btn quiet sm" id="download-plan" type="button">Build plan</button><button class="btn quiet sm" id="copy-css" type="button">Copy token CSS</button><button class="btn quiet sm" id="download-css" type="button">Download CSS</button></div>
+      <p class="micro">Attach PROMPT.txt and the reference images to your builder. The kit includes a build plan, review checklist, offline board and measured CSS.</p>
+    </div>
+  </section>
+
+  </main>
+  <dialog id="inspector" class="inspector" aria-label="Reference details">
+    <div class="insp-head">
+      <span class="insp-title" id="insp-title">Reference</span>
+      <button class="insp-x" id="insp-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="insp-body" id="insp-body"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>
